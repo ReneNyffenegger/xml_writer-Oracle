@@ -52,7 +52,7 @@ create or replace package body excel_xml as
   begin
     if cell_data is null then cn; return; end if;
 
-    write_('<Cell><Data ss:Type="Number">' || cell_data || '</Data></Cell>');
+    write_('<Cell><Data ss:Type="Number">' || round(cell_data, 13) || '</Data></Cell>');
   end cd; -- }
 
   procedure cd(cell_data date) is -- {
