@@ -48,11 +48,16 @@ create or replace package body excel_xml as
     write_('<Cell><Data ss:Type="String">' || cell_data || '</Data></Cell>');
   end cd; -- }
 
-  procedure cd(cell_data number) is -- {
+  procedure cd(cell_data number, style varchar2 := null) is -- {
+    style_ varchar2(100);
   begin
     if cell_data is null then cn; return; end if;
 
-    write_('<Cell><Data ss:Type="Number">' || round(cell_data, 13) || '</Data></Cell>');
+    if style is not null then
+       style_ := ' ss:StyleID="' || style || '"';
+    end if;
+
+    write_('<Cell' || style_ || '><Data ss:Type="Number">' || round(cell_data, 13) || '</Data></Cell>');
   end cd; -- }
 
   procedure cd(cell_data date) is -- {

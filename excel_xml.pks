@@ -6,8 +6,8 @@ create or replace package excel_xml as
   procedure write_(text varchar2);
 
   procedure cd(cell_data varchar2);
-  procedure cd(cell_data number);
-  procedure cd(cell_data date);
+  procedure cd(cell_data number  , style varchar2 := null);
+  procedure cd(cell_data date    );
 
   procedure cn;
   
